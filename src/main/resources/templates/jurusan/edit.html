@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Edit Jurusan</h1>
+    <form th:action="@{~/jurusan/update}" method="post">
+        <input type="hidden" name="id" th:value="${data.id}"><br/>
+        <label>Kode</label><br/>
+        <input type="text" name="code" id="code" th:value="${data.code}"> <br/>
+
+        <label>Nama</label><br>
+        <input type="text" name="name" id="name" th:value="${data.name}"><br/>
+
+        <label>Fakultas</label>
+        <select name="fakultas.id">
+            <option value=""></option>
+            <option th:each="fakultas : ${fakultasList}" th:value="${fakultas.id}" th:text="${fakultas.name}"> </option>
+        </select>
+        <button type="submit">Simpan</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Index Jurusan</h1>
+    <a th:href="@{~/jurusan/add}">New Jurusan</a>
+    <table>
+        <thead>
+        <tr>
+            <td>Kode</td>
+            <td>Nama Jurusan</td>
+            <td>Fakultas</td>
+            <td>#Action</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="data : ${dataList}">
+            <td th:text="${data.code}"></td>
+            <td th:text="${data.name}"></td>
+            <td th:text="${data.fakultas.name}"></td>
+            <td>
+                <a th:href="@{~/jurusan/detail/{id}(id=${data.id})}">Detail</a>&nbsp;
+                <a th:href="@{~/jurusan/edit/{id}(id=${data.id})}">Edit</a> &nbsp; &nbsp;
+                <form th:action="@{~/jurusan/delete}" method="post">
+                    <input type="hidden" name="id" id="id" th:value="${data.id}">
+                    <button type="submit">Delete</button>
+                </form> &nbsp;
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

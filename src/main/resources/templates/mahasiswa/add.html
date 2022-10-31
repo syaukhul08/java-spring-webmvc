@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Add Mahasiswa</h1>
+    <form th:action="@{~/mahasiswa/save}" method="post">
+        <label>Name</label> <br>
+        <input type="text" name="name" id="name"> <br>
+
+        <label>Jenis Kelamin</label> <br>
+        <input type="text" name="jk" id="jk"> <br>
+
+        <label>Alamat</label> <br>
+        <input type="text" name="alamat" id="alamat"> <br>
+
+        <label>Tempat Lahir</label> <br>
+        <input type="text" name="tmpLahir" id="tmpLahir"> <br>
+
+        <label>Tanggal Lahir</label> <br>
+        <input type="date" name="tglLahir" id="tglLahir" placeholder="dd-MM-yyyy" > <br>
+
+        <label>Agama</label> <br>
+        <input type="text" name="agama" id="agama"> <br>
+
+        <label>Jurusan</label> <br>
+        <select name="jurusan.id">
+            <option value=""></option>
+            <option th:each="data : ${jurusanList}" th:value="${data.id}" th:text="${data.name}"></option>
+        </select></br>
+
+        <button type="submit">Simpan</button>
+    </form>
+</body>
+</html>
