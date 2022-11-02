@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gedung</title>
+</head>
+<body>
+    <h1>Detail Gedung</h1>
+    <form th:action="@{~/gedung/save}" method="post">
+        <label>Kode</label><br>
+        <input readonly="readonly" type="text" name="code" id="code" th:value="${data.code}"><br/>
+
+        <label>Nama</label>
+        <input readonly="readonly" type="text" name="name" id="name" th:value="${data.name}"><br/>
+
+        <label>Jumlah Lantai</label><br>
+        <input readonly="readonly" type="text" name="jmlLantai" id="jmlLantai" th:value="${data.jmlLantai}"><br/>
+    </form>
+</body>
+</html>

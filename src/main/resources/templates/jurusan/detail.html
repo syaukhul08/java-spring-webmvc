@@ -1,20 +1,54 @@
-<!doctype html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Jurusan</title>
 </head>
 <body>
-    <h1>Detail Jurusan</h1>
-    <form th:action="@{~/jurusan/save}" method="post">
-        <label>Kode</label><br>
-        <input readonly="readonly" type="text" name="code" id="code" th:value="${data.code}"><br/>
 
-        <label>Nama</label>
-        <input readonly="readonly" type="text" name="name" id="name" th:value="${data.name}"><br/>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0">Detail Jurusan</h1>
+    </div><!-- /.col -->
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a th:href="@{~/}">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{~/jurusan}">Jurusan</a></li>
+            <li class="breadcrumb-item active">Detail Jurusan</li>
+        </ol>
+    </div><!-- /.col -->
+</div><!-- /.row -->
 
-        <label>Fakultas</label><br>
-        <input readonly="readonly" type="text" name="fakultas" id="fakultas" th:value="${data.fakultas.name}"><br/>
-    </form>
+<div class="row" layout:fragment="content">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- card mulai -->
+        <form th:action="@{~/jurusan/save}" method="post">
+            <input type="hidden" name="id" th:value="${data.id}">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <h3 class="card-title">Jurusan</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="code">Kode</label>
+                        <input id="code" type="text" name="code" class="form-control" th:value="${data.code}" readonly="readonly" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Nama Jurusan</label>
+                        <input id="name" type="text" name="name" class="form-control" th:value="${data.name}" readonly="readonly" >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fakultas</label><br>
+                        <input    id="fakultas" type="text" name="fakultas" class="form-control" th:value="${data.fakultas.name}" readonly="readonly">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

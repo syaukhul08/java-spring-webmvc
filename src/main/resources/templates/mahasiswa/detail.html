@@ -1,32 +1,74 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mahasiswa</title>
 </head>
 <body>
-    <h1>Detail Mahasiswa</h1>
-    <form th:action="@{~/mahasiswa/save}" method="post">
-        <label>Name</label> <br>
-        <input readonly="readonly" type="text" name="name" id="name" th:value="${data.name}"> <br>
 
-        <label>Jenis Kelamin</label> <br>
-        <input readonly="readonly" type="text" name="jk" id="jk" th:value="${data.jk}"> <br>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0">Detail Mahasiswa</h1>
+    </div><!-- /.col -->
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a th:href="@{~/}">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{~/mahasiswa}">Mahasiswa</a></li>
+            <li class="breadcrumb-item active">Detail Mahasiswa</li>
+        </ol>
+    </div><!-- /.col -->
+</div><!-- /.row -->
 
-        <label>Alamat</label> <br>
-        <input readonly="readonly" type="text" name="alamat" id="alamat" th:value="${data.alamat}"> <br>
+<div class="row" layout:fragment="content">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- card mulai -->
+        <form th:action="@{~/mahasiswa/save}" method="post">
+            <input type="hidden" name="id" th:value="${data.id}">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <h3 class="card-title">Mahasiswa</h3>
+                </div>
 
-        <label>Tempat Lahir</label> <br>
-        <input readonly="readonly" type="text" name="tmpLahir" id="tmpLahir" th:value="${data.tmpLahir}"> <br>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input id="name" type="text" name="name" class="form-control" th:value="${data.name}" readonly="readonly" >
+                    </div>
 
-        <label>Tanggal Lahir</label> <br>
-        <input readonly="readonly" type="date" name="tglLahir" id="tglLahir" placeholder="dd-MM-yyyy" th:value="${data.tglLahir}"> <br>
+                    <div class="form-group">
+                        <label for="jk">Jenis Kelamin</label>
+                        <input id="jk" type="text" name="jk" class="form-control" th:value="${data.jk}" readonly="readonly" >
+                    </div>
 
-        <label>Agama</label> <br>
-        <input readonly="readonly" type="text" name="agama" id="agama" th:value="${data.agama}"> <br>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input id="alamat" type="text" name="alamat" class="form-control" th:value="${data.alamat}" readonly="readonly" >
+                    </div>
 
-        <label>Jurusan</label> <br>
-        <input readonly="readonly" type="text" name="jurusan" id="jurusan" th:value="${data.jurusan.name}"> <br>
-    </form>
+                    <div class="form-group">
+                        <label for="tmpLahir">Tempat Lahir</label>
+                        <input id="tmpLahir" type="text" name="tmpLahir" class="form-control" th:value="${data.tmpLahir}" readonly="readonly" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tglLahir">Tanggal Lahir</label>
+                        <input id="tglLahir" type="date" name="tglLahir" placeholder="dd-MM-yyyy" class="form-control" th:value="${data.tglLahir}" readonly="readonly" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agama">Agama</label>
+                        <input id="agama" type="text" name="agama" class="form-control" th:value="${data.agama}" readonly="readonly" >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jurusan</label><br>
+                        <input    id="jurusan" type="text" name="jurusan" class="form-control" th:value="${data.jurusan.name}" readonly="readonly">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
