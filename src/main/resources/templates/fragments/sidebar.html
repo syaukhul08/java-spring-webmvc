@@ -2,7 +2,7 @@
 <aside xmlns:th="http://www.thymeleaf.org" th:fragment="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="index3.html" class="brand-link">
-    <img th:src="@{~/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <img th:src="@{~/dist/img/univ.jpg}" alt="Univ-Verse Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light">Univ-Verse</span>
   </a>
 
@@ -60,6 +60,30 @@
               <a th:href="@{~/mahasiswa}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Mahasiswa</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{~/gedung}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Gedung</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{~/ruang}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Ruang</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{~/matakuliah}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Mata Kuliah</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{~/dosen}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dosen</p>
               </a>
             </li>
           </ul>

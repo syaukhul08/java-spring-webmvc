@@ -78,6 +78,9 @@ public class RuangServiceImpl implements RuangService{
         }
         try {
             RuangEntity data = result.get();
+            GedungEntity gedung = data.getGedung();
+            gedung.removeRuang(data);
+            data.setGedung(null);
             this.repository.delete(data);
             return Optional.of(new RuangModel(data));
         }catch (Exception e){

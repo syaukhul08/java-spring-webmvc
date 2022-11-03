@@ -47,16 +47,16 @@
 
             <div class="card-body">
                 <table class="table">
-                    <thead>
+                    <thead style="font-weight: bold">
                     <tr>
                         <td>Kode</td>
                         <td>Nama Jurusan</td>
                         <td>Fakultas</td>
-                        <td>#Action</td>
+                        <td>Action</td>
                     </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody >
                     <tr th:each="data : ${dataList}">
                         <td th:text="${data.code}"></td>
                         <td th:text="${data.name}"></td>

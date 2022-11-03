@@ -3,18 +3,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
 <head>
     <meta charset="UTF-8">
-    <title>Gedung</title>
+    <title>Ruang</title>
 </head>
 <body>
 <div class="row mb-2" layout:fragment="breadcrumb">
     <div class="col-sm-6">
-        <h1 class="m-0">Edit Gedung</h1>
+        <h1 class="m-0">Edit Ruang</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a th:href="@{~/}">Home</a></li>
-            <li class="breadcrumb-item"><a th:href="@{~/gedung}">Gedung</a></li>
-            <li class="breadcrumb-item active">Edit Gedung</li>
+            <li class="breadcrumb-item"><a th:href="@{~/ruang}">Ruang</a></li>
+            <li class="breadcrumb-item active">Edit Ruang</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -22,11 +22,11 @@
 <div class="row" layout:fragment="content">
     <div class="col-lg-12 col-md-12 col-sm-12">
         <!-- card mulai -->
-        <form th:action="@{~/gedung/update}" method="post">
+        <form th:action="@{~/ruang/update}" method="post">
             <input type="hidden" name="id" th:value="${data.id}">
             <div class="card">
                 <div class="card-header bg-warning">
-                    <h3 class="card-title">New Fakultas</h3>
+                    <h3 class="card-title">New Ruang</h3>
                 </div>
 
                 <div class="card-body">
@@ -36,13 +36,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Nama</label>
+                        <label for="name">Nama Ruang</label>
                         <input id="name" type="text" name="name" class="form-control" th:value="${data.name}">
                     </div>
 
                     <div class="form-group">
-                        <label for="jmlLantai">Jumlah Lantai</label>
-                        <textarea  id="jmlLantai" type="number" name="jmlLantai" class="form-control" th:text="${data.jmlLantai}"> </textarea>
+                        <label for="lantaiKe">Lantai Ke</label>
+                        <input id="lantaiKe" type="number" name="lantaiKe" class="form-control" th:value="${data.lantaiKe}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Gedung</label>
+                        <select name="gedung.id" class="form-control">
+                            <option value=""></option>
+                            <option th:each="gedung : ${gedungList}" th:value="${gedung.id}"
+                                    th:text="${gedung.name}">
+                            </option>
+                        </select>
                     </div>
                 </div>
 

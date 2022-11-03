@@ -3,18 +3,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
 <head>
     <meta charset="UTF-8">
-    <title>Gedung</title>
+    <title>Dosen</title>
 </head>
 <body>
 <div class="row mb-2" layout:fragment="breadcrumb">
     <div class="col-sm-6">
-        <h1 class="m-0">Add New Gedung</h1>
+        <h1 class="m-0">Add New Dosen</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a th:href="@{~/}">Home</a></li>
-            <li class="breadcrumb-item"><a th:href="@{~/gedung}">Gedung</a></li>
-            <li class="breadcrumb-item active">Add Gedung</li>
+            <li class="breadcrumb-item"><a th:href="@{~/dosen}">Dosen</a></li>
+            <li class="breadcrumb-item active">Add Dosen</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -22,16 +22,16 @@
 <div class="row" layout:fragment="content">
     <div class="col-lg-12 col-md-12 col-sm-12">
         <!-- card mulai -->
-        <form th:action="@{~/gedung/save}" method="post">
+        <form th:action="@{~/dosen/save}" method="post">
             <div class="card">
                 <div class="card-header bg-warning">
-                    <h3 class="card-title">New Gedung</h3>
+                    <h3 class="card-title">New Dosen</h3>
                 </div>
 
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="code">Kode</label>
-                        <input id="code" type="text" name="code" class="form-control">
+                        <label for="nip">NIP</label>
+                        <input id="nip" type="text" name="nip" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -40,8 +40,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jmlLantai">Jumlah Lantai</label>
-                        <textarea  id="jmlLantai" type="number" name="jmlLantai" class="form-control"> </textarea>
+                        <label for="jk">Jenis Kelamin</label>
+                        <input id="jk" type="text" name="jk" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <textarea  id="alamat" name="alamat" class="form-control"> </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gelar">Gelar</label>
+                        <input id="gelar" type="text" name="gelar" class="form-control">
                     </div>
                 </div>
 
