@@ -29,7 +29,7 @@ public class FakultasController {
 
     @GetMapping("/add")
     public ModelAndView add() {
-        return new ModelAndView("fakultas/add.html");
+        return new ModelAndView("fakultas/form.html");
     }
 
     @PostMapping("/save")

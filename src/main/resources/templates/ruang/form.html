@@ -1,0 +1,38 @@
+<form th:action="@{~/ruang/save}" method="post">
+    <div class="card">
+        <div class="card-header bg-warning">
+            <h3 class="card-title">New Ruang</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="form-group">
+                <label for="code">Kode</label>
+                <input id="code" type="text" name="code" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Nama Ruang</label>
+                <input id="name" type="text" name="name" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="lantaiKe">Lantai Ke</label>
+                <input id="lantaiKe" type="number" name="lantaiKe" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Gedung</label>
+                <select name="gedung.id" class="form-control">
+                    <option value=""></option>
+                    <option th:each="gedung : ${gedungList}" th:value="${gedung.id}"
+                            th:text="${gedung.name}">
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-success">Simpan</button>
+        </div>
+    </div>
+</form>

@@ -34,7 +34,7 @@ public class RuangController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        ModelAndView view = new ModelAndView("ruang/add.html");
+        ModelAndView view = new ModelAndView("ruang/form.html");
         List<GedungModel> result = gedungService.get();
         view.addObject("gedungList", result);
         return view;

@@ -31,7 +31,7 @@ public class GedungController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        return new ModelAndView("gedung/add.html");
+        return new ModelAndView("gedung/form.html");
     }
 
     @PostMapping("/save")

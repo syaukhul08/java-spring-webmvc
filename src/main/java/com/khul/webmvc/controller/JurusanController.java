@@ -33,7 +33,7 @@ public class JurusanController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        ModelAndView view = new ModelAndView("jurusan/add.html");
+        ModelAndView view = new ModelAndView("jurusan/form.html");
         List<FakultasModel> result = fakultasService.get();
         view.addObject("fakultasList",result);
         return view;

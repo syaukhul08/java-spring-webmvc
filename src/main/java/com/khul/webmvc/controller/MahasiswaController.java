@@ -35,7 +35,7 @@ public class MahasiswaController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        ModelAndView view = new ModelAndView("mahasiswa/add.html");
+        ModelAndView view = new ModelAndView("mahasiswa/form.html");
         List<JurusanModel> result = jurusanService.get();
         view.addObject("jurusanList",result);
         return view;

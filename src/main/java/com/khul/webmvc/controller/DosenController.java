@@ -31,7 +31,7 @@ public class DosenController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        return new ModelAndView("dosen/add.html");
+        return new ModelAndView("dosen/form.html");
     }
 
     @PostMapping("/save")

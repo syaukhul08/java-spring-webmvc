@@ -78,6 +78,19 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
+
+        <!-- modal -->
+        <div class="modal fade" id="modal-form">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
     </div>
     <!-- ./wrapper -->
 
@@ -106,5 +119,7 @@
     <script th:src="@{~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
     <!-- AdminLTE App -->
     <script th:src="@{~/dist/js/adminlte.js}"></script>
+
+    <script layout:fragment="client-script"></script>
     </body>
 </html>

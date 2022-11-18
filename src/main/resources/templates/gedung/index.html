@@ -35,7 +35,7 @@
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
                             </button>
-                            <a th:href="@{~/gedung/add}" class="btn btn-primary">
+                            <a th:href="@{~/gedung/add}" id="btn-add" class="btn btn-primary">
                                 <i class="fas fa-plus"></i>
                             </a>
                         </div>
@@ -62,10 +62,10 @@
                         <td th:text="${data.name}"></td>
                         <td th:text="${data.jmlLantai}"></td>
                         <td>
-                            <a th:href="@{~/gedung/detail/{id}(id=${data.id})}" class="btn btn-xs btn-info">
+                            <a th:href="@{~/gedung/detail/{id}(id=${data.id})}" class="btn btn-xs btn-info btn-detail">
                                 <i class="fas fa-eye"></i>
                             </a>&nbsp;
-                            <a th:href="@{~/gedung/edit/{id}(id=${data.id})}" class="btn btn-xs btn-warning">
+                            <a th:href="@{~/gedung/edit/{id}(id=${data.id})}" class="btn btn-xs btn-warning btn-edit">
                                 <i class="fas fa-edit"></i>
                             </a> &nbsp;
                             <form th:action="@{~/gedung/delete}" method="post"
@@ -87,5 +87,52 @@
         </div>
     </div>
 </div>
+<script layout:fragment="client-script">
+    //event button add
+    $("#btn-add").on("click", function (e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url:url,
+            dataType: 'HTML',
+            method: 'GET',
+            success: function (result){
+                $('#modal-form').find('.modal-content').html(result);
+                $('#modal-form').modal('show');
+            }
+        })
+        return;
+    });
+
+    $('.btn-detail').on('click', function (e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url:url,
+            dataType: 'HTML',
+            method: 'GET',
+            success: function (result){
+                $('#modal-form').find('.modal-content').html(result);
+                $('#modal-form').modal('show');
+            }
+        })
+        return;
+    });
+
+    $(".btn-edit").on("click", function (e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url: url,
+            dataType: 'HTML',
+            method: 'GET',
+            success: function (result){
+                $('#modal-form').find('.modal-content').html(result);
+                $('#modal-form').modal('show');
+            }
+        })
+        return;
+    });
+</script>
 </body>
 </html>

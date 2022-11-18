@@ -1,0 +1,28 @@
+<form th:action="@{~/gedung/save}" method="post">
+    <div class="card">
+        <div class="card-header bg-warning">
+            <h3 class="card-title">New Gedung</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="form-group">
+                <label for="code">Kode</label>
+                <input id="code" type="text" name="code" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Nama</label>
+                <input id="name" type="text" name="name" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="jmlLantai">Jumlah Lantai</label>
+                <textarea  id="jmlLantai" type="number" name="jmlLantai" class="form-control"> </textarea>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-success">Simpan</button>
+        </div>
+    </div>
+</form>

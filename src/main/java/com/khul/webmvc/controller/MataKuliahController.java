@@ -30,7 +30,7 @@ public class MataKuliahController {
 
     @GetMapping("/add")
     public ModelAndView update(){
-        return new ModelAndView("matakuliah/add.html");
+        return new ModelAndView("matakuliah/form.html");
     }
 
     @PostMapping("/save")
