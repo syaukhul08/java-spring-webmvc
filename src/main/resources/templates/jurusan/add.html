@@ -40,12 +40,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Fakultas</label>
-                        <select name="fakultas.id" class="form-control">
-                            <option value=""></option>
+                        <label for="fakultasId">Fakultas</label>
+                        <select id="fakultasId" name="fakultas.id" class="form-control">
+                            <option value="">Select One</option>
                             <option th:each="fakultas : ${fakultasList}" th:value="${fakultas.id}"
-                                    th:text="${fakultas.name}">
-                            </option>
+                                    th:text="${fakultas.name}">Select One</option>
                         </select>
                     </div>
                 </div>

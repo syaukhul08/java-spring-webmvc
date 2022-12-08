@@ -1,9 +1,11 @@
-package com.khul.webmvc.service;
+package com.khul.webmvc.service.impl;
 
 import com.khul.webmvc.entity.RoleEntity;
 import com.khul.webmvc.entity.UserEntity;
 import com.khul.webmvc.model.UserModel;
 import com.khul.webmvc.repository.UserRepository;
+import com.khul.webmvc.service.RoleService;
+import com.khul.webmvc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private UserRepository repository;
     private PasswordEncoder passwordEncoder;

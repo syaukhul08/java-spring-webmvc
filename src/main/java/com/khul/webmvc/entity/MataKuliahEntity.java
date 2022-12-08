@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -43,7 +42,14 @@ public class MataKuliahEntity {
     @Column(name = "updated_by", length = 20)
     private String updatedBy;
 
+    @OneToMany(mappedBy = "mataKuliah", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<KelasEntity> kelas = new HashSet<>();
+
     public MataKuliahEntity() {
+    }
+
+    public MataKuliahEntity(String id) {
+        this.id = id;
     }
 
     public MataKuliahEntity(MataKuliahModel model){
@@ -53,5 +59,15 @@ public class MataKuliahEntity {
         this.createdBy = "SYSTEM";
         this.updatedAt = LocalDateTime.now();
         this.updatedBy = "SYSTEM";
+    }
+
+    public void addKelas(KelasEntity kelas){
+        this.kelas.add(kelas);
+        kelas.setMataKuliah(this);
+    }
+
+    public void removeKelas(KelasEntity kelas){
+        this.kelas.remove(kelas);
+        kelas.setMataKuliah(null);
     }
 }

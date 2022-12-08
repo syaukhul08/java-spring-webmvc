@@ -7,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -43,6 +45,9 @@ public class RuangEntity {
     @Column(name = "updated_by", length = 20)
     private String updatedBy;
 
+    @OneToMany(mappedBy = "ruang", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<KelasEntity> kelas = new HashSet<>();
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "gedung_id", nullable = false)
     private GedungEntity gedung;
@@ -76,6 +81,16 @@ public class RuangEntity {
         this.createdBy = "SYSTEM";
         this.updatedAt = LocalDateTime.now();
         this.updatedBy = "SYSTEM";
+    }
+
+    public void addKelas(KelasEntity kelas){
+        this.kelas.add(kelas);
+        kelas.setRuang(this);
+    }
+
+    public void removeKelas(KelasEntity kelas){
+        this.kelas.remove(kelas);
+        kelas.setRuang(null);
     }
 
     @PrePersist

@@ -1,9 +1,10 @@
-package com.khul.webmvc.service;
+package com.khul.webmvc.service.impl;
 
 import com.khul.webmvc.entity.FakultasEntity;
 import com.khul.webmvc.entity.JurusanEntity;
 import com.khul.webmvc.model.JurusanModel;
 import com.khul.webmvc.repository.JurusanRepository;
+import com.khul.webmvc.service.JurusanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class JurusanServiceImpl implements JurusanService{
+public class JurusanServiceImpl implements JurusanService {
 
     private JurusanRepository repository;
 
@@ -35,6 +36,16 @@ public class JurusanServiceImpl implements JurusanService{
     @Override
     public Optional<JurusanModel> save(JurusanModel request){
         if (request == null){
+            return Optional.empty();
+        }
+
+        List<JurusanEntity> checkCode = this.repository.findByCode(request.getCode());
+        if (!checkCode.isEmpty()){
+            return Optional.empty();
+        }
+
+        List<JurusanEntity> checkName = this.repository.findByCode(request.getName());
+        if (!checkName.isEmpty()){
             return Optional.empty();
         }
 

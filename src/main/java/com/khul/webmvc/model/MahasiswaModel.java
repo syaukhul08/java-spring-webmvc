@@ -25,6 +25,16 @@ public class MahasiswaModel {
     public MahasiswaModel() {
     }
 
+    public MahasiswaModel(String name, String jk, String alamat, String tmpLahir, LocalDate tglLahir, String agama, JurusanModel jurusan) {
+        this.name = name;
+        this.jk = jk;
+        this.alamat = alamat;
+        this.tmpLahir = tmpLahir;
+        this.tglLahir = tglLahir;
+        this.agama = agama;
+        this.jurusan = jurusan;
+    }
+
     public MahasiswaModel(MahasiswaEntity entity) {
         BeanUtils.copyProperties(entity,this);
         if (entity.getJurusan() != null) {

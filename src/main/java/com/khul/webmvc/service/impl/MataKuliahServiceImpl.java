@@ -1,8 +1,9 @@
-package com.khul.webmvc.service;
+package com.khul.webmvc.service.impl;
 
 import com.khul.webmvc.entity.MataKuliahEntity;
 import com.khul.webmvc.model.MataKuliahModel;
 import com.khul.webmvc.repository.MataKuliahRepository;
+import com.khul.webmvc.service.MataKuliahService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class MataKuliahServiceImpl implements MataKuliahService{
+public class MataKuliahServiceImpl implements MataKuliahService {
 
     private MataKuliahRepository repository;
 

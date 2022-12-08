@@ -13,11 +13,19 @@ public class JurusanModel {
     private String name;
     private String fakultasId;
     private FakultasModel fakultas;
+    private String fakultasName;
+
 
     public JurusanModel() {
     }
 
-    public JurusanModel(JurusanEntity entity){
+    public JurusanModel(String code, String name, String fakultasId) {
+        this.code = code;
+        this.name = name;
+        this.fakultasId = fakultasId;
+    }
+
+    public JurusanModel(JurusanEntity entity) {
         BeanUtils.copyProperties(entity, this);
         if (entity.getFakultas() != null) {
             fakultasId = entity.getFakultas().getId();
@@ -25,3 +33,5 @@ public class JurusanModel {
         }
     }
 }
+
+

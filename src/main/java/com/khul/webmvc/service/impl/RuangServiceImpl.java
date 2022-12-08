@@ -1,9 +1,10 @@
-package com.khul.webmvc.service;
+package com.khul.webmvc.service.impl;
 
 import com.khul.webmvc.entity.GedungEntity;
 import com.khul.webmvc.entity.RuangEntity;
 import com.khul.webmvc.model.RuangModel;
 import com.khul.webmvc.repository.RuangRepository;
+import com.khul.webmvc.service.RuangService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class RuangServiceImpl implements RuangService{
+public class RuangServiceImpl implements RuangService {
 
     private RuangRepository repository;
 

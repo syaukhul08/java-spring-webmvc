@@ -1,7 +1,8 @@
-package com.khul.webmvc.service;
+package com.khul.webmvc.service.impl;
 
 import com.khul.webmvc.entity.RoleEntity;
 import com.khul.webmvc.repository.RoleRepository;
+import com.khul.webmvc.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

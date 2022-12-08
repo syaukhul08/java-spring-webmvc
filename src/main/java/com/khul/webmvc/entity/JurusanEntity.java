@@ -47,13 +47,16 @@ public class JurusanEntity {
     public JurusanEntity() {
     }
 
+    public JurusanEntity(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+
     public JurusanEntity(String id) {
         this.id = id;
     }
 
     public JurusanEntity(JurusanModel data) {
-        this.id = UUID.randomUUID().toString();
-
         this.code = data.getCode();
         this.name = data.getName();
 
@@ -67,13 +70,19 @@ public class JurusanEntity {
         this.createdBy = "SYSTEM";
         this.updatedAt = LocalDateTime.now();
         this.updatedBy = "SYSTEM";
+        this.id = UUID.randomUUID().toString();
     }
 
-    public JurusanEntity(String code, String name){
+
+    public JurusanEntity(String code, String name, String fakultasId) {
         this.code = code;
         this.name = name;
-        this.createdAt = LocalDateTime.now();
-        this.createdBy = "SYSTEM";
+
+        FakultasEntity fakultasEntity = new FakultasEntity(fakultasId);
+        this.fakultas = fakultasEntity;
+
+        this.createdAt=LocalDateTime.now();
+        this.createdBy="SYSTEM";
     }
 
     @PrePersist

@@ -1,18 +1,30 @@
-package com.khul.webmvc.service;
+package com.khul.webmvc.service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FakultasServiceImplTest {
+class RoleServiceImplTest {
 
     @BeforeEach
     void setUp() {
     }
 
     @Test
+    void getCount() {
+    }
+
+    @Test
     void get() {
+    }
+
+    @Test
+    void getByNames() {
+    }
+
+    @Test
+    void getByName() {
     }
 
     @Test
@@ -21,6 +33,10 @@ class FakultasServiceImplTest {
 
     @Test
     void save() {
+    }
+
+    @Test
+    void testSave() {
     }
 
     @Test

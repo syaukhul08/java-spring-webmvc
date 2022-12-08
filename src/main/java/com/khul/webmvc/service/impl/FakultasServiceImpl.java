@@ -1,8 +1,9 @@
-package com.khul.webmvc.service;
+package com.khul.webmvc.service.impl;
 
 import com.khul.webmvc.entity.FakultasEntity;
 import com.khul.webmvc.model.FakultasModel;
 import com.khul.webmvc.repository.FakultasRepository;
+import com.khul.webmvc.service.FakultasService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

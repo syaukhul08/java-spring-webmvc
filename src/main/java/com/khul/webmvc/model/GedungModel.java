@@ -16,6 +16,12 @@ public class GedungModel {
     public GedungModel() {
     }
 
+    public GedungModel(String code, String name, Integer jmlLantai) {
+        this.code = code;
+        this.name = name;
+        this.jmlLantai = jmlLantai;
+    }
+
     public GedungModel(GedungEntity entity){
         BeanUtils.copyProperties(entity,this);
     }

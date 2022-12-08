@@ -1,8 +1,9 @@
-package com.khul.webmvc.service;
+package com.khul.webmvc.service.impl;
 
 import com.khul.webmvc.entity.GedungEntity;
 import com.khul.webmvc.model.GedungModel;
 import com.khul.webmvc.repository.GedungRepository;
+import com.khul.webmvc.service.GedungService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class GedungServiceImpl implements GedungService{
+public class GedungServiceImpl implements GedungService {
 
     private GedungRepository repository;
 

@@ -9,6 +9,8 @@ import org.springframework.beans.BeanUtils;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -59,6 +61,16 @@ public class MahasiswaEntity {
 
     public MahasiswaEntity() {
 
+    }
+
+    public MahasiswaEntity(String name, String jk, String alamat, String tmpLahir, LocalDate tglLahir, String agama, JurusanEntity jurusan) {
+        this.name = name;
+        this.jk = jk;
+        this.alamat = alamat;
+        this.tmpLahir = tmpLahir;
+        this.tglLahir = tglLahir;
+        this.agama = agama;
+        this.jurusan = jurusan;
     }
 
     public MahasiswaEntity(MahasiswaModel data){
