@@ -61,12 +61,12 @@ public class MataKuliahEntity {
         this.updatedBy = "SYSTEM";
     }
 
-    public void addKelas(KelasEntity kelas){
+    public void addMataKuliah(KelasEntity kelas){
         this.kelas.add(kelas);
         kelas.setMataKuliah(this);
     }
 
-    public void removeKelas(KelasEntity kelas){
+    public void removeMataKuliah(KelasEntity kelas){
         this.kelas.remove(kelas);
         kelas.setMataKuliah(null);
     }

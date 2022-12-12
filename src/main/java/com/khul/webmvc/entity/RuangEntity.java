@@ -83,12 +83,12 @@ public class RuangEntity {
         this.updatedBy = "SYSTEM";
     }
 
-    public void addKelas(KelasEntity kelas){
+    public void addRuang(KelasEntity kelas){
         this.kelas.add(kelas);
         kelas.setRuang(this);
     }
 
-    public void removeKelas(KelasEntity kelas){
+    public void removeRuang(KelasEntity kelas){
         this.kelas.remove(kelas);
         kelas.setRuang(null);
     }

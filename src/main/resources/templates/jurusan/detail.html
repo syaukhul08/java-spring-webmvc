@@ -17,8 +17,12 @@
                 <input id="name" type="text" name="name" class="form-control" th:value="${data.name}" readonly="readonly" >
             </div>
             <div class="form-group">
-                <label>Fakultas</label><br>
-                <input    id="fakultas" type="text" name="fakultas" class="form-control" th:value="${data.fakultas.name}" readonly="readonly">
+                <label for="fakultasId">Fakultas</label>
+                <select id="fakultasId" name="fakultasId" class="form-control" readonly="readonly">
+                    <option value="">Select One</option>
+                    <option th:each="option: ${fakultasList}" th:value="${option.id}" th:text="${option.name}"
+                            th:selected="${option.id == data.fakultasId}">Select One</option>
+                </select>
             </div>
         </div>
     </div>

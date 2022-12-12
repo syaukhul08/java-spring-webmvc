@@ -102,6 +102,7 @@
           method: 'GET',
           success: function (result){
               $('#modal-form').find('.modal-content').html(result);
+              $('#modal-form').find('.card-title').html("New Fakultas");
               $('#modal-form').modal('show');
           }
       })
@@ -117,6 +118,7 @@
             method: 'GET',
             success: function (result){
                 $('#modal-form').find('.modal-content').html(result);
+                $('#modal-form').find('.card-title').html("Detail Fakultas");
                 $('#modal-form').modal('show');
             }
         })
@@ -132,6 +134,7 @@
             method: 'GET',
             success: function (result){
                 $('#modal-form').find('.modal-content').html(result);
+                $('#modal-form').find('.card-title').html("Edit Fakultas");
                 $('#modal-form').modal('show');
             }
         })
@@ -144,6 +147,25 @@
        console.log("On log info");
 
        $("#tabel-data").hide();
+    });
+
+    $('#modal-form').on('submit','#form-input', function (){
+        $.ajax({
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            dataType: 'html',
+            type: 'POST',
+            success: function (data){
+                $('#modal-form').find('.modal-content').html(data);
+                var check = $("#modal-form").find(".modal-content").find(".error").length;
+                console.log("count invalid : "+ check);
+                if(check==0){
+                    $("#modal-form").modal('hide');
+                    location.reload();
+                }
+            }
+        });
+        return false;
     });
 </script>
 </body>

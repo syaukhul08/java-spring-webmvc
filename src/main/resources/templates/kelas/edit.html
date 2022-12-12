@@ -1,25 +1,87 @@
  <!-- card mulai -->
- <form th:action="@{~/fakultas/update}" method="post">
+ <form th:action="@{~/kelas/update}" method="post">
      <input type="hidden" name="id" th:value="${data.id}">
          <div class="card">
              <div class="card-header bg-warning">
                  <h3 class="card-title">New Fakultas</h3>
              </div>
 
-             <div class="card-body">
-                 <div class="form-group">
-                     <label for="code">Kode</label>
-                     <input id="code" type="text" name="code" class="form-control" th:value="${data.code}">
+             <div class="modal-body row">
+                 <div class="col-md-6 col-lg-6">
+                     <div class="form-group">
+                         <label for="code">Kode</label>
+                         <input id="code" type="text" name="code" class="form-control">
+                     </div>
+
+                     <div class="form-group">
+                         <label for="namaHari">Hari</label>
+                         <input id="namaHari" type="text" name="namaHari" class="form-control">
+                     </div>
+
+                     <div class="form-group">
+                         <label for="jamMulai">Jam Mulai</label>
+                         <input  id="jamMulai" th:type="time" name="jamMulai" class="form-control">
+                     </div>
+
+                     <div class="form-group">
+                         <label for="jamSelesai">Jam Selesai</label>
+                         <input  id="jamSelesai" th:type="time" name="jamSelesai" class="form-control">
+                     </div>
+
+                     <div class="form-group">
+                         <label>Ruang</label>
+                         <select name="ruang.id" class="form-control">
+                             <option value=""></option>
+                             <option th:each="data : ${ruangList}" th:value="${data.id}" th:text="${data.name}"></option>
+                         </select>
+                     </div>
+
+                     <div class="form-group">
+                         <label>Mata Kuliah</label>
+                         <select name="mataKuliah.id" class="form-control">
+                             <option value=""></option>
+                             <option th:each="data : ${mataKuliahList}" th:value="${data.id}" th:text="${data.name}"></option>
+                         </select>
+                     </div>
                  </div>
 
-                 <div class="form-group">
-                     <label for="name">Nama</label>
-                     <input id="name" type="text" name="name" class="form-control" th:value="${data.name}">
-                 </div>
+                 <div class="col-md-6 col-lg-6">
+                     <div class="form-group">
+                         <label>Dosen</label>
+                         <select name="dosen.id" class="form-control">
+                             <option value=""></option>
+                             <option th:each="data : ${dosenList}" th:value="${data.id}" th:text="${data.name}"></option>
+                         </select>
+                     </div>
 
-                 <div class="form-group">
-                     <label for="alamat">Alamat</label>
-                     <textarea  id="alamat" name="alamat" class="form-control" th:text="${data.alamat}"> </textarea>
+                     <div class="form-group">
+                         <label for="status">Status</label>
+                         <input id="status" type="text" name="status" class="form-control">
+                     </div>
+
+                     <div class="form-group">
+                         <label for="tahunAjaran">Tahun Ajaran</label>
+                         <input id="tahunAjaran" type="number" name="tahunAjaran" class="form-control">
+                     </div>
+
+                     <div class="form-group">
+                         <label for="semester">Semester</label>
+                         <input id="semester" type="text" name="semester" class="form-control">
+                     </div>
+
+                     <div class="form-group">
+                         <label for="quota">Quota</label>
+                         <input id="quota" type="text" name="quota" class="form-control">
+                     </div>
+
+                     <div class="form-group">
+                         <label>Kelas Online</label>
+                         <select name="bisaOnline" class="form-control">
+                             <option value=""></option>
+                             <option value="1">Ya</option>
+                             <option value="0">Tidak</option>
+                         </select>
+                     </div>
                  </div>
              </div>
 

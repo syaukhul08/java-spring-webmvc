@@ -50,9 +50,34 @@ public class KelasServiceImpl implements KelasService {
                 request.getDosenId(),
                 request.getNamaHari(),
                 request.getJamMulai(),
-                request.getJamSelesai());
+                request.getJamSelesai()
+        );
 
-        if (!check01.isEmpty()){
+        if(check01 != null || !check01.isEmpty()){
+            return Optional.empty();
+        }
+
+        //check 02
+        List<KelasEntity> check02 = this.repository.checkCase02(
+                request.getRuangId(),
+                request.getNamaHari(),
+                request.getJamMulai(),
+                request.getJamSelesai()
+        );
+
+        if(check02 != null || !check02.isEmpty()){
+            return Optional.empty();
+        }
+
+        //check 03
+        List<KelasEntity> check03 = this.repository.checkCase03(
+                request.getDosenId(),
+                request.getNamaHari(),
+                request.getJamMulai(),
+                request.getJamSelesai()
+        );
+
+        if(check03 != null || !check03.isEmpty()){
             return Optional.empty();
         }
 
@@ -95,6 +120,29 @@ public class KelasServiceImpl implements KelasService {
 
     @Override
     public Optional<KelasModel> delete(String id) {
-        return Optional.empty();
+        Optional<KelasEntity> result = this.repository.findById(id);
+        if (result.isEmpty()){
+            return Optional.empty();
+        }
+        try {
+            KelasEntity data = result.get();
+
+            RuangEntity ruang = data.getRuang();
+            ruang.removeRuang(data);
+            data.setRuang(null);
+
+            DosenEntity dosen = data.getDosen();
+            dosen.removeDosen(data);
+            data.setDosen(null);
+
+            MataKuliahEntity mataKuliah = data.getMataKuliah();
+            mataKuliah.removeMataKuliah(data);
+            data.setMataKuliah(null);
+
+            this.repository.delete(data);
+            return Optional.of(new KelasModel(data));
+        } catch (Exception e){
+            return Optional.empty();
+        }
     }
 }

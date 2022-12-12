@@ -46,7 +46,7 @@ class FakultasServiceImplTest {
         when(repository.findAll()).thenReturn(fakultasEntityList);
 
         //test method get
-        List<FakultasModel> result = service.get();
+        List<FakultasModel> result = service.getAll();
 
         //check 1
         assertNotNull(result);

@@ -26,7 +26,7 @@ public class JurusanController {
     @GetMapping
     public ModelAndView index(){
         ModelAndView view = new ModelAndView("jurusan/index.html");
-        List<JurusanModel> result = jurusanService.get();
+        List<JurusanModel> result = jurusanService.getAll();
         view.addObject("dataList", result);
         return view;
     }
@@ -34,7 +34,7 @@ public class JurusanController {
     @GetMapping("/add")
     public ModelAndView add(){
         ModelAndView view = new ModelAndView("jurusan/form.html");
-        List<FakultasModel> result = fakultasService.get();
+        List<FakultasModel> result = fakultasService.getAll();
         view.addObject("fakultasList",result);
         return view;
     }
@@ -52,7 +52,7 @@ public class JurusanController {
             return new ModelAndView("redirect:/jurusan");
         }
 
-        List<FakultasModel> fakultas = fakultasService.get();
+        List<FakultasModel> fakultas = fakultasService.getAll();
         ModelAndView view = new ModelAndView("jurusan/edit.html");
         view.addObject("data", jurusan);
         view.addObject("fakultasList", fakultas);

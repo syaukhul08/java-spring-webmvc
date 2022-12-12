@@ -60,11 +60,15 @@ public class JurusanEntity {
         this.code = data.getCode();
         this.name = data.getName();
 
-        if (data.getFakultas() != null) {
-            FakultasEntity fakultasEntity = new FakultasEntity();
-            fakultasEntity.setId(data.getFakultas().getId());
-            this.fakultas = fakultasEntity;
-        }
+//        if (data.getFakultas() != null) {
+//            FakultasEntity fakultasEntity = new FakultasEntity();
+//            fakultasEntity.setId(data.getFakultas().getId());
+//            this.fakultas = fakultasEntity;
+//        }
+
+        FakultasEntity fakultasEntity = new FakultasEntity();
+        fakultasEntity.setId(data.getFakultasId());
+        this.fakultas = fakultasEntity;
 
         this.createdAt = LocalDateTime.now();
         this.createdBy = "SYSTEM";

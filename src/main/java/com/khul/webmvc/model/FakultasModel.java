@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +16,18 @@ import java.util.List;
 @Setter
 public class FakultasModel {
     private String id;
+    @NotBlank
+    @NotEmpty
     private String code;
+
+    @NotBlank
+    @NotEmpty
     private String name;
+
+    @NotBlank
+    @NotEmpty
     private String alamat;
-    private List<JurusanModel> jurusanList;
+    private List<JurusanModel> jurusans;
 
     public FakultasModel() {
     }
@@ -32,11 +42,11 @@ public class FakultasModel {
 
         BeanUtils.copyProperties(entity, this);
 
-//        if (entity.getJurusans() != null || !entity.getJurusans().isEmpty()){
-//            jurusans = new ArrayList<>();
-//            for (JurusanEntity jrsn : entity.getJurusans()){
-//                jurusans.add(new JurusanModel(jrsn));
-//            }
-//        }
+        if (entity.getJurusans() != null || !entity.getJurusans().isEmpty()){
+            jurusans = new ArrayList<>();
+            for (JurusanEntity jrsn : entity.getJurusans()){
+                jurusans.add(new JurusanModel(jrsn));
+            }
+        }
     }
 }

@@ -17,6 +17,23 @@ public interface KelasRepository extends JpaRepository<KelasEntity, String> {
                                   @Param("dosenId") String dosenId,
                                   @Param("namaHari") String namaHari,
                                   @Param("jamMulai") Date jamMulai,
-                                  @Param("jamSelesai") Date jamSelesai);
+                                  @Param("jamSelesai") Date jamSelesai
+    );
+
+    @Query("select t from KelasEntity t where t.namaHari= :namaHari and t.ruangId= :ruangId and " +
+            "t.jamMulai >= :jamMulai or t.jamSelesai <= :jamSelesai")
+    List<KelasEntity> checkCase02(@Param("ruangId") String ruangId,
+                                  @Param("namaHari") String namaHari,
+                                  @Param("jamMulai") Date jamMulai,
+                                  @Param("jamSelesai") Date jamSelesai
+    );
+
+    @Query("select t from KelasEntity t where t.dosenId= :dosenId and t.namaHari= :namaHari and t.jamMulai>= :jamMulai and t.jamSelesai< :jamSelesai")
+    List<KelasEntity> checkCase03(@Param("dosenId") String dosenId,
+                                  @Param("namaHari") String namaHari,
+                                  @Param("jamMulai") Date jamMulai,
+                                  @Param("jamSelesai") Date jamSelesai
+    );
+
 
 }

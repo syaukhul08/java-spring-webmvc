@@ -5,12 +5,24 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 @Getter
 @Setter
 public class JurusanModel {
     private String id;
+
+    @NotBlank
+    @NotEmpty
     private String code;
+
+    @NotBlank
+    @NotEmpty
     private String name;
+
+    @NotBlank
+    @NotEmpty
     private String fakultasId;
     private FakultasModel fakultas;
     private String fakultasName;
@@ -29,7 +41,7 @@ public class JurusanModel {
         BeanUtils.copyProperties(entity, this);
         if (entity.getFakultas() != null) {
             fakultasId = entity.getFakultas().getId();
-            fakultas = new FakultasModel(entity.getFakultas());
+            fakultasName = entity.getFakultas().getName();
         }
     }
 }

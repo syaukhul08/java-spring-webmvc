@@ -29,13 +29,30 @@
                      <thead>
                      <tr>
                          <td class="font-weight-bold">Kode</td>
-                         <td class="font-weight-bold">Nama Jurusan</td>
+                         <td class="font-weight-bold">Hari</td>
+                         <td class="font-weight-bold">Jam</td>
+                         <td class="font-weight-bold">Ruang</td>
+                         <td class="font-weight-bold">Mata Kuliah</td>
+                         <td class="font-weight-bold">Dosen</td>
+                         <td class="font-weight-bold">Status</td>
+                         <td class="font-weight-bold">Tahun Ajaran</td>
+                         <td class="font-weight-bold">Semester</td>
+                         <td class="font-weight-bold">Quota</td>
+                         <td class="font-weight-bold">Online</td>
                      </tr>
                      </thead>
                      <tbody>
-                     <tr th:each="jurusan : ${data.jurusans}">
-                         <td th:text="${jurusan.code}"></td>
-                         <td th:text="${jurusan.name}"></td>
+                     <tr th:each="kelas : ${data.kelas}">
+                         <td th:text="${data.code}"></td>
+                         <td th:text="${data.namaHari}"></td>
+                         <td th:text="${{data.jamMulai + ' - ' + data.jamSelesai}}"></td>
+                         <td th:text="${data.ruang.name}"></td>
+                         <td th:text="${data.mataKuliah.name}"></td>
+                         <td th:text="${data.dosen.name}"></td>
+                         <td th:text="${data.status}"></td>
+                         <td th:text="${data.tahunAjaran}"></td>
+                         <td th:text="${data.semester}"></td>
+                         <td th:text="${data.quota}"></td>
                      </tr>
                      </tbody>
                  </table>

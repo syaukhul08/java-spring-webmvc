@@ -78,12 +78,12 @@ public class DosenEntity {
         this.updatedBy = "SYSTEM";
     }
 
-    public void addKelas(KelasEntity kelas){
+    public void addDosen(KelasEntity kelas){
         this.kelas.add(kelas);
         kelas.setDosen(this);
     }
 
-    public void removeKelas(KelasEntity kelas){
+    public void removeDosen(KelasEntity kelas){
         this.kelas.remove(kelas);
         kelas.setDosen(null);
     }
