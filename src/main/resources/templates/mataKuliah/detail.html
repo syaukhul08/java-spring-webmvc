@@ -1,9 +1,10 @@
 <!-- card mulai -->
 <form th:action="@{~/matakuliah/save}" method="post">
     <input type="hidden" name="id" th:value="${data.id}">
+
     <div class="card">
         <div class="card-header bg-warning">
-            <h3 class="card-title">New Mata Kuliah</h3>
+            <h3 class="card-title"Mata Kuliah</h3>
         </div>
 
         <div class="card-body">
@@ -19,7 +20,7 @@
 
             <div class="form-group">
                 <label for="sks">SKS</label>
-                <textarea  id="sks" name="sks" class="form-control" th:text="${data.sks}" readonly="readonly" > </textarea>
+                <input  id="sks" type="number" name="sks" class="form-control" th:value="${data.sks}" readonly="readonly" >
             </div>
         </div>
     </div>

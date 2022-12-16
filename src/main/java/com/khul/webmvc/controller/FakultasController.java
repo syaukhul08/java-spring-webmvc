@@ -67,7 +67,7 @@ public class FakultasController {
         }
 
         ModelAndView view = new ModelAndView("fakultas/edit.html");
-        view.addObject("data", fakultas);
+        view.addObject("fakultas", fakultas);
         return view;
     }
 

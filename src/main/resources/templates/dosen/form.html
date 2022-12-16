@@ -1,4 +1,4 @@
-<form th:action="@{~/dosen/save}" method="post">
+<form th:action="@{~/dosen/save}" method="post" id="form-input" th:object="${dosen}">
     <div class="card">
         <div class="card-header bg-warning">
             <h3 class="card-title">New Dosen</h3>
@@ -7,32 +7,42 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="nip">NIP</label>
-                <input id="nip" type="text" name="nip" class="form-control">
+                <input id="nip" type="text" th:field="*{nip}" th:class="${#fields.hasErrors('nip')} ? 'form-control is-invalid' : 'form-control '">
+                <span th:if="${#fields.hasErrors('nip')}" class="error invalid-feedback" th:errors="*{nip}"></span>
             </div>
 
             <div class="form-group">
                 <label for="name">Nama</label>
-                <input id="name" type="text" name="name" class="form-control">
+                <input id="name" type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')} ? 'form-control is-invalid': 'form-control'">
+                <span th:if="${#fields.hasErrors('name')}" class="error invalid-feedback" th:errors="*{name}"></span>
             </div>
 
             <div class="form-group">
                 <label for="jk">Jenis Kelamin</label>
-                <input id="jk" type="text" name="jk" class="form-control">
+                <select id="jk" class="form-control" th:field="*{jk}" th:class="${#fields.hasErrors('jk')} ? 'form-control is-invalid': 'form-control'">
+                    <option value="">Select One</option>
+                    <option th:each="option: ${#lists.sort(genderList, byPosition)}" th:value="${option.code}" th:text="${option.name}"
+                            th:selected="${option.code == dosen.jk}">Select One</option>
+                </select>
+                <span th:if="${#fields.hasErrors('jk')}" class="error invalid-feedback" th:errors="*{jk}"></span>
             </div>
 
             <div class="form-group">
                 <label for="alamat">Alamat</label>
-                <textarea  id="alamat" name="alamat" class="form-control"> </textarea>
+                <textarea  id="alamat" th:field="*{alamat}" th:class="${#fields.hasErrors('alamat')} ? 'form-control is-invalid': 'form-control'"> </textarea>
+                <span th:if="${#fields.hasErrors('alamat')}" class="error invalid-feedback" th:errors="*{alamat}"></span>
             </div>
 
             <div class="form-group">
                 <label for="gelar">Gelar</label>
-                <input id="gelar" type="text" name="gelar" class="form-control">
+                <input id="gelar" type="text" th:field="*{gelar}" th:class="${#fields.hasErrors('gelar')} ? 'form-control is-invalid' : 'form-control '">
+                <span th:if="${#fields.hasErrors('gelar')}" class="error invalid-feedback" th:errors="*{gelar}"></span>
             </div>
         </div>
 
         <div class="card-footer">
             <button type="submit" class="btn btn-success">Simpan</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
     </div>
 </form>

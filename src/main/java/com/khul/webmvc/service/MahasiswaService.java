@@ -11,7 +11,7 @@ public interface MahasiswaService {
     public MahasiswaModel getById(String id);
     public Boolean validNim(MahasiswaModel data);
     public Boolean validName(MahasiswaModel data);
-    public Optional<MahasiswaModel> save(MahasiswaModel request);
-    public Optional<MahasiswaModel> update(String id, MahasiswaModel request);
+    public Optional<MahasiswaModel> save(MahasiswaModel data);
+    public Optional<MahasiswaModel> update(String id, MahasiswaModel data);
     public Optional<MahasiswaModel> delete(String id);
 }

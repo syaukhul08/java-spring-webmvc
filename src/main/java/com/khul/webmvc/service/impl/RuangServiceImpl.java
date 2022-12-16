@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,18 +26,49 @@ public class RuangServiceImpl implements RuangService {
     }
 
     @Override
-    public List<RuangModel> get() {
-        return this.repository.findAll().stream().map(RuangModel::new).collect(Collectors.toList());
+    public List<RuangModel> getAll() {
+       List<RuangEntity> result = this.repository.findAll();
+       if (result.isEmpty()){
+           Collections.emptyList();
+       }
+        return result.stream().map(RuangModel::new).collect(Collectors.toList());
     }
 
     @Override
     public RuangModel getById(String id) {
-        return this.repository.findById(id).map(RuangModel::new).orElse(new RuangModel());
+        if (id == null || id.isBlank() || id.isEmpty()){
+            return new RuangModel();
+        }
+        Optional<RuangEntity> result = repository.findById(id);
+
+        return result.map(RuangModel::new).orElse(new RuangModel());
+    }
+
+    @Override
+    public Boolean validCode(RuangModel data) {
+        List<RuangEntity> checkCode = this.repository.findByCode(data.getCode());
+        return checkCode.isEmpty();
+    }
+
+    @Override
+    public Boolean validName(RuangModel data) {
+        List<RuangEntity> checkName = this.repository.findByName(data.getName());
+        return checkName.isEmpty();
     }
 
     @Override
     public Optional<RuangModel> save(RuangModel request) {
         if (request == null){
+            return Optional.empty();
+        }
+
+        List<RuangEntity> checkCode = this.repository.findByCode(request.getCode());
+        if (!checkCode.isEmpty()){
+            return Optional.empty();
+        }
+
+        List<RuangEntity> checkName = this.repository.findByName(request.getName());
+        if (!checkName.isEmpty()){
             return Optional.empty();
         }
 
@@ -52,14 +84,17 @@ public class RuangServiceImpl implements RuangService {
     @Override
     public Optional<RuangModel> update(String id, RuangModel request) {
         Optional<RuangEntity> result = this.repository.findById(id);
+
         if (result.isEmpty()){
             return Optional.empty();
         }
 
         RuangEntity data = result.get();
         BeanUtils.copyProperties(request, data);
-        GedungEntity gedung = new GedungEntity(request.getGedung().getId());
-        data.setId(id);
+        data.setCode(request.getCode());
+        data.setName(request.getName());
+        GedungEntity gedung = new GedungEntity(request.getGedungId());
+        //data.setId(id);
         data.setGedung(gedung);
         data.setUpdatedAt(LocalDateTime.now());
 

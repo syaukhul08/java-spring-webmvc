@@ -4,6 +4,7 @@ import com.khul.webmvc.entity.GedungEntity;
 import com.khul.webmvc.model.GedungModel;
 import com.khul.webmvc.repository.GedungRepository;
 import com.khul.webmvc.service.GedungService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class GedungServiceImpl implements GedungService {
 
@@ -24,18 +26,43 @@ public class GedungServiceImpl implements GedungService {
     }
 
     @Override
-    public List<GedungModel> get() {
+    public List<GedungModel> getAll() {
         return this.repository.findAll().stream().map(GedungModel::new).collect(Collectors.toList());
     }
 
     @Override
     public GedungModel getById(String id) {
+        if (id == null || id.isBlank() || id.isEmpty()){
+            return new GedungModel();
+        }
         return this.repository.findById(id).map(GedungModel::new).orElse(new GedungModel());
+    }
+
+    @Override
+    public Boolean validCode(GedungModel model) {
+        List<GedungEntity> checkCode = this.repository.findByCode(model.getCode());
+        return checkCode.isEmpty();
+    }
+
+    @Override
+    public Boolean validName(GedungModel model) {
+        List<GedungEntity> checkName = this.repository.findByName(model.getName());
+        return checkName.isEmpty();
     }
 
     @Override
     public Optional<GedungModel> save(GedungModel request) {
         if (request == null){
+            return Optional.empty();
+        }
+
+        List<GedungEntity> checkCode = this.repository.findByCode(request.getCode());
+        if (!checkCode.isEmpty()){
+            return Optional.empty();
+        }
+
+        List<GedungEntity> checkName = this.repository.findByName(request.getName());
+        if (!checkName.isEmpty()){
             return Optional.empty();
         }
 
@@ -50,6 +77,10 @@ public class GedungServiceImpl implements GedungService {
 
     @Override
     public Optional<GedungModel> update(String id, GedungModel request) {
+       if (id == null || id.isBlank() || id.isEmpty()){
+           return Optional.empty();
+       }
+
         Optional<GedungEntity> result = this.repository.findById(id);
         if (result.isEmpty()){
             return Optional.empty();
@@ -81,7 +112,8 @@ public class GedungServiceImpl implements GedungService {
             this.repository.delete(result);
             return Optional.of(new GedungModel(result));
         }catch (Exception e){
-            return Optional.empty();
+            log.info("Delete is failed, error {} ", e.getMessage());
         }
+        return Optional.of(new GedungModel(result));
     }
 }

@@ -10,6 +10,5 @@ import java.util.List;
 public interface FakultasRepository extends JpaRepository<FakultasEntity, String> {
     List<FakultasEntity> findByCode(String code);
     List<FakultasEntity> findByName(String name);
-    List<FakultasEntity> findByCodeAndName(String code, String name);
 
 }

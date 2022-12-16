@@ -1,62 +1,75 @@
  <!-- card mulai -->
- <form th:action="@{~/fakultas/save}" method="post">
+ <form th:action="@{~/kelas/save}" method="post">
      <input type="hidden" name="id" th:value="${data.id}">
      <div class="card">
          <div class="card-header bg-warning">
              <h3 class="card-title">New Fakultas</h3>
          </div>
 
-         <div class="card-body">
-             <div class="form-group">
-                 <label for="code">Kode</label>
-                 <input id="code" type="text" name="code" class="form-control" th:value="${data.code}" readonly="readonly" >
+         <div class="modal-body row">
+             <div class="col-md-6 col-lg-6">
+                 <div class="form-group">
+                     <label for="code">Code</label>
+                     <input id="code" type="text" name="code" class="form-control" th:value="${data.code}" readonly="readonly" >
+                 </div>
+
+                 <div class="form-group">
+                     <label for="namaHari">Hari</label>
+                     <input id="namaHari" type="text" name="namaHari" class="form-control" th:value="${data.namaHari}" readonly="readonly" >
+                 </div>
+
+                 <div class="form-group">
+                     <label for="jamMulai">Jam Mulai</label>
+                     <input id="jamMulai" type="time" name="jamMulai" class="form-control" th:value="${data.jamMulai}" readonly="readonly" >
+                 </div>
+
+                 <div class="form-group">
+                     <label for="jamSelesai">Jam Selesai</label>
+                     <input id="jamSelesai" type="time" name="jamSelesai" class="form-control" th:value="${data.jamSelesai}" readonly="readonly" >
+                 </div>
+
+                 <div class="form-group">
+                     <label>Nama Ruang</label>
+                     <input type="text" class="form-control" th:value="${data.ruangName}" readonly="readonly" >
+                 </div>
+
+                 <div class="form-group">
+                     <label>Nama Matakuliah</label>
+                     <input type="text" class="form-control" th:value="${data.mataKuliahName}" readonly="readonly" >
+                 </div>
              </div>
 
-             <div class="form-group">
-                 <label for="name">Nama</label>
-                 <input id="name" type="text" name="name" class="form-control" th:value="${data.name}" readonly="readonly" >
-             </div>
 
-             <div class="form-group">
-                 <label for="alamat">Alamat</label>
-                 <textarea  id="alamat" name="alamat" class="form-control" th:text="${data.alamat}" readonly="readonly" > </textarea>
-             </div>
+             <div class="col-md-6 col-lg-6">
+                 <div class="form-group">
+                     <label>Nama Dosen</label>
+                     <input type="text" class="form-control" th:value="${data.dosenName}" readonly="readonly" >
+                 </div>
 
-            <!-- table -->
-            <div class="form-group">
-                 <label >Jurusan</label>
-                 <table class="table table-bordered table-hover dataTable dtr-inline">
-                     <thead>
-                     <tr>
-                         <td class="font-weight-bold">Kode</td>
-                         <td class="font-weight-bold">Hari</td>
-                         <td class="font-weight-bold">Jam</td>
-                         <td class="font-weight-bold">Ruang</td>
-                         <td class="font-weight-bold">Mata Kuliah</td>
-                         <td class="font-weight-bold">Dosen</td>
-                         <td class="font-weight-bold">Status</td>
-                         <td class="font-weight-bold">Tahun Ajaran</td>
-                         <td class="font-weight-bold">Semester</td>
-                         <td class="font-weight-bold">Quota</td>
-                         <td class="font-weight-bold">Online</td>
-                     </tr>
-                     </thead>
-                     <tbody>
-                     <tr th:each="kelas : ${data.kelas}">
-                         <td th:text="${data.code}"></td>
-                         <td th:text="${data.namaHari}"></td>
-                         <td th:text="${{data.jamMulai + ' - ' + data.jamSelesai}}"></td>
-                         <td th:text="${data.ruang.name}"></td>
-                         <td th:text="${data.mataKuliah.name}"></td>
-                         <td th:text="${data.dosen.name}"></td>
-                         <td th:text="${data.status}"></td>
-                         <td th:text="${data.tahunAjaran}"></td>
-                         <td th:text="${data.semester}"></td>
-                         <td th:text="${data.quota}"></td>
-                     </tr>
-                     </tbody>
-                 </table>
+                 <div class="form-group">
+                     <label for="status">status</label>
+                     <input id="status" type="text" name="status" class="form-control" th:value="${data.status}" readonly="readonly" >
+                 </div>
+
+                 <div class="form-group">
+                     <label for="tahunAjaran">tahunAjaran</label>
+                     <input id="tahunAjaran" type="text" name="tahunAjaran" class="form-control" th:value="${data.tahunAjaran}" readonly="readonly" >
+                 </div>
+
+                 <div class="form-group">
+                     <label for="semester">semester</label>
+                     <input id="semester" type="text" name="semester" class="form-control" th:value="${data.semester}" readonly="readonly" >
+                 </div>
+
+                 <div class="form-group">
+                     <label for="quota">quota</label>
+                     <input id="quota" type="text" name="quota" class="form-control" th:value="${data.quota}" readonly="readonly" >
+                 </div>
+
+                 <div class="form-group">
+                     <label for="bisaOnline">bisaOnline</label>
+                     <input id="bisaOnline" type="text" name="bisaOnline" class="form-control" th:value="${data.bisaOnline}" readonly="readonly" >
+                 </div>
              </div>
          </div>
-     </div>
  </form>

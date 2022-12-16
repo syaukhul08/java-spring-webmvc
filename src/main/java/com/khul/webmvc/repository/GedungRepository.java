@@ -10,6 +10,4 @@ import java.util.List;
 public interface GedungRepository extends JpaRepository<GedungEntity, String> {
     List<GedungEntity> findByCode(String code);
     List<GedungEntity> findByName(String name);
-    List<GedungEntity> findByCodeAndName(String code, String name);
-
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,12 +31,26 @@ public class KelasServiceImpl implements KelasService {
 
     @Override
     public List<KelasModel> getAll() {
-        return this.repository.findAll().stream().map(KelasModel::new).collect(Collectors.toList());
+        List<KelasEntity> result = this.repository.findAll();
+        if (result.isEmpty()){
+            Collections.emptyList();
+        }
+        return result.stream().map(KelasModel::new).collect(Collectors.toList());
     }
 
     @Override
     public KelasModel getById(String id) {
-        return this.repository.findById(id).map(KelasModel::new).orElse(new KelasModel());
+        if (id == null || id.isBlank() || id.isEmpty()){
+            return new KelasModel();
+        }
+        Optional<KelasEntity> result = repository.findById(id);
+        return result.map(KelasModel::new).orElseGet(KelasModel::new);
+    }
+
+    @Override
+    public Boolean validCode(KelasModel model) {
+        List<KelasEntity> checkCode = this.repository.findByCode(model.getCode());
+        return checkCode.isEmpty();
     }
 
     @Override
@@ -90,6 +105,7 @@ public class KelasServiceImpl implements KelasService {
             return Optional.empty();
         }
 
+
     }
 
     @Override
@@ -101,9 +117,9 @@ public class KelasServiceImpl implements KelasService {
 
         KelasEntity data = result.get();
         BeanUtils.copyProperties(request,data);
-        RuangEntity ruang = new RuangEntity(request.getRuang().getId());
-        MataKuliahEntity mataKuliah = new MataKuliahEntity(request.getMataKuliah().getId());
-        DosenEntity dosen = new DosenEntity(request.getDosen().getId());
+        RuangEntity ruang = new RuangEntity(request.getRuangId());
+        MataKuliahEntity mataKuliah = new MataKuliahEntity(request.getMatkulId());
+        DosenEntity dosen = new DosenEntity(request.getDosenId());
         data.setId(id);
         data.setRuang(ruang);
         data.setMataKuliah(mataKuliah);

@@ -31,8 +31,7 @@
                 <label for="jk">Jenis Kelamin</label>
                 <select id="jk" class="form-control" th:field="*{jk}" th:class="${#fields.hasErrors('jk')} ? 'form-control is-invalid': 'form-control'">
                     <option value="">Select One</option>
-                    <option th:each="option: ${#lists.sort(genderList, byPosition)}" th:value="${option.id}" th:text="${option.name}"
-                            th:selected="${option.id == mahasiswa.jk}">Select One</option>
+                    <option th:each="option: ${#lists.sort(genderList, byPosition)}" th:value="${option.code}" th:text="${option.name}"></option>
                 </select>
                 <span th:if="${#fields.hasErrors('jk')}" class="error invalid-feedback" th:errors="*{jk}"></span>
             </div>
@@ -55,8 +54,7 @@
                 <label for="agama">Agama</label>
                 <select id="agama" th:field="*{agama}" th:class="${#fields.hasErrors('agama')} ? 'form-control is-invalid': 'form-control'">
                     <option value="">Select One</option>
-                    <option th:each="option: ${#lists.sort(agamaList,byPosition)}" th:value="${option.id}" th:text="${option.name}"
-                            th:selected="${option.id == mahasiswa.agama}">Select One</option>
+                    <option th:each="option: ${#lists.sort(agamaList,byPosition)}" th:value="${option.code}" th:text="${option.name}"></option>
                 </select>
                 <span th:if="${#fields.hasErrors('agama')}" class="error invalid-feedback" th:errors="*{agama}"></span>
             </div>

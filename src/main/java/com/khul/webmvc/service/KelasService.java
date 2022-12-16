@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface KelasService {
     public List<KelasModel> getAll();
     public KelasModel getById(String id);
+    public Boolean validCode(KelasModel model);
     public Optional<KelasModel> save(KelasModel request);
     public Optional<KelasModel> update(String id, KelasModel request);
     public Optional<KelasModel> delete(String id);

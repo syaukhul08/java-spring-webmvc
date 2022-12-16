@@ -52,8 +52,7 @@
                     <td>Name</td>
                     <td>Jenis Kelamin</td>
                     <td>Alamat</td>
-                    <td>Tempat Lahir</td>
-                    <td>Tanggal Lahir</td>
+                    <td>Tempat / Tanggal Lahir </td>
                     <td>Agama</td>
                     <td>Jurusan</td>
                     <td>Action</td>
@@ -66,8 +65,7 @@
                         <td th:text="${data.name}"></td>
                         <td th:text="${data.jk}"></td>
                         <td th:text="${data.alamat}"></td>
-                        <td th:text="${data.tmpLahir}"></td>
-                        <td th:text="${#temporals.format(data.tglLahir, 'dd-MM-yyyy')}"></td>
+                        <td th:text="${data.tmpLahir}+' / '+ ${#temporals.format(data.tglLahir, 'dd-MM-yyyy')}"></td>
                         <td th:text="${data.agama}"></td>
                             <td th:text="${data.jurusanName}"></td>
                         <td>

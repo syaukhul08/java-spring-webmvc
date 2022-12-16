@@ -72,11 +72,16 @@ public class RuangEntity {
         this.name = data.getName();
         this.lantaiKe = data.getLantaiKe();
 
-        if (data.getGedung() != null) {
-            GedungEntity gedungEntity = new GedungEntity();
-            gedungEntity.setId(data.getGedung().getId());
-            this.gedung = gedungEntity;
-        }
+//        if (data.getGedung() != null) {
+//            GedungEntity gedungEntity = new GedungEntity();
+//            gedungEntity.setId(data.getGedung().getId());
+//            this.gedung = gedungEntity;
+//        }
+
+        GedungEntity gedungEntity = new GedungEntity();
+        gedungEntity.setId(data.getGedungId());
+        this.gedung = gedungEntity;
+
         this.createdAt = LocalDateTime.now();
         this.createdBy = "SYSTEM";
         this.updatedAt = LocalDateTime.now();

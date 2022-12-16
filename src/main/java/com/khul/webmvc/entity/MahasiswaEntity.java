@@ -22,7 +22,7 @@ public class MahasiswaEntity {
     @Column(name = "id", length = 36)
     private String id;
 
-    @Column(name = "nim", length = 120)
+    @Column(name = "nim", unique = true, length = 120)
     private String nim;
 
     @Column(name = "nama_siswa", length = 120)
@@ -64,16 +64,6 @@ public class MahasiswaEntity {
 
     public MahasiswaEntity() {
 
-    }
-
-    public MahasiswaEntity(String name, String jk, String alamat, String tmpLahir, LocalDate tglLahir, String agama, JurusanEntity jurusan) {
-        this.name = name;
-        this.jk = jk;
-        this.alamat = alamat;
-        this.tmpLahir = tmpLahir;
-        this.tglLahir = tglLahir;
-        this.agama = agama;
-        this.jurusan = jurusan;
     }
 
     public MahasiswaEntity(MahasiswaModel data){

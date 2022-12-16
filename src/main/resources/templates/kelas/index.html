@@ -72,17 +72,15 @@
                         <td th:text="${data.code}"></td>
                         <td th:text="${data.namaHari}"></td>
                         <td th:text="${{data.jamMulai + ' - ' + data.jamSelesai}}"></td>
-                        <td th:text="${data.ruang.name}"></td>
-                        <td th:text="${data.mataKuliah.name}"></td>
-                        <td th:text="${data.dosen.name}"></td>
+                        <td th:text="${data.ruangName}"></td>
+                        <td th:text="${data.matkulName}"></td>
+                        <td th:text="${data.dosenName}"></td>
                         <td th:text="${data.status}"></td>
                         <td th:text="${data.tahunAjaran}"></td>
                         <td th:text="${data.semester}"></td>
                         <td th:text="${data.quota}"></td>
-                        <td>
-                            <span th:if="${data.bisaOnline}==true">Ya</span>
-                            <span th:if="${data.bisaOnline}==false">Tidak</span>
-                        </td>
+                        <td th:text="${data.bisaOnline}"></td>
+
                         <td>
                             <a th:href="@{~/kelas/detail/{id}(id=${data.id})}" class="btn btn-xs btn-info btn-detail">
                                 <i class="fas fa-eye"></i>
@@ -163,6 +161,28 @@
         console.log("On log info");
 
         $("#tabel-data").hide();
+    });
+
+    $('#modal-form').on('submit','#form-input', function (){
+        $.ajax({
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            dataType: 'html',
+            type: 'POST',
+            success: function (data){
+                // masukan dulu result ke modal
+                $('#modal-form').find('.modal-content').html(data);
+                // check jumlah element yang memiliki class has-error
+                var check = $("#modal-form").find(".modal-content").find(".error").length;
+                console.log("count invalid : "+ check);
+                // jika tidak ada error
+                if(check==0){
+                    $("#modal-form").modal('hide');
+                    location.reload();
+                }
+            }
+        });
+        return false;
     });
 </script>
 </body>

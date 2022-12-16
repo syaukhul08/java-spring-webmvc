@@ -1,5 +1,6 @@
 <!-- card mulai -->
 <form th:action="@{~/mahasiswa/save}" method="post">
+    <input type="hidden" name="id" th:value="${data.id}">
     <div class="modal-header bg-warning">
         <h3 class="modal-title">New Mahasiswa</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,66 +13,37 @@
         <input type="hidden" th:field="*{id}">
         <div class="col-md-6 col-lg-6">
             <div class="form-group">
-                <label for="name">NIM</label>
-                <input id="nim" type="text" th:field="*{nim}" th:class="${#fields.hasErrors('nim')} ? 'form-control is-invalid': 'form-control'"/>
-                <span th:if="${#fields.hasErrors('nim')}" class="error invalid-feedback" th:errors="*{nim}"></span>
+                <label>Nama</label>
+                <input id="name" type="text" name="name" class="form-control" th:value="${data.name}" readonly="readonly" >
             </div>
-
             <div class="form-group">
-                <label for="name">Nama</label>
-                <input id="name" type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')} ? 'form-control is-invalid': 'form-control'"/>
-                <span th:if="${#fields.hasErrors('name')}" class="error invalid-feedback" th:errors="*{name}"></span>
+                <label>Jenis Kelamin</label>
+                <input type="text" name="jk" class="form-control" th:value="${data.jk}" readonly="readonly" >
             </div>
-
             <div class="form-group">
-                <label for="alamat">Alamat</label>
-                <input id="alamat" type="text" th:field="*{alamat}" th:class="${#fields.hasErrors('alamat')} ? 'form-control is-invalid': 'form-control'">
-                <span th:if="${#fields.hasErrors('alamat')}" class="error invalid-feedback" th:errors="*{alamat}"></span>
+                <label>Alamat</label>
+                <input type="text" name="alamat" class="form-control" th:value="${data.alamat}" readonly="readonly" >
             </div>
-
             <div class="form-group">
-                <label for="jk">Jenis Kelamin</label>
-                <select id="jk" class="form-control" th:field="*{jk}" th:class="${#fields.hasErrors('jk')} ? 'form-control is-invalid': 'form-control'">
-                    <option value="">Select One</option>
-                    <option th:each="option: ${#lists.sort(genderList, byPosition)}" th:value="${option.id}" th:text="${option.name}"
-                            th:selected="${option.id == mahasiswa.jk}">Select One</option>
-                </select>
-                <span th:if="${#fields.hasErrors('jk')}" class="error invalid-feedback" th:errors="*{jk}"></span>
+                <label>Tempat Lahir</label>
+                <input type="text" name="tmpLahir" class="form-control" th:value="${data.tmpLahir}" readonly="readonly" >
             </div>
         </div>
+
         <div class="col-md-6 col-lg-6">
             <div class="form-group">
-                <label for="tptLahir">Tempat / Tanggal Lahir</label>
-                <div class="input-group mb-3">
-                    <input id="tptLahir" type="text" th:field="*{tmpLahir}" th:class="${#fields.hasErrors('tmpLahir')} ? 'form-control is-invalid': 'form-control'" placeholder="tempat lahir">
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    </div>
-                    <input id="tglLahir" type="date" th:field="*{tglLahir}" th:class="${#fields.hasErrors('tglLahir')} ? 'form-control is-invalid': 'form-control'" placeholder="dd-MM-yyyy">
-                </div>
-                <span th:if="${#fields.hasErrors('tmpLahir')}" class="error invalid-feedback" th:errors="*{tmpLahir}"></span>
-                <span th:if="${#fields.hasErrors('tglLahir')}" class="error invalid-feedback" th:errors="*{tglLahir}"></span>
+                <label>Tanggal Lahir</label>
+                <input type="date" name="tglLahir" class="form-control" th:value="${data.tglLahir}" readonly="readonly" >
+            </div>
+            <div class="form-group">
+                <label>Agama</label>
+                <input type="text" name="agama" class="form-control" th:value="${data.agama}" readonly="readonly" >
+            </div>
+            <div class="form-group">
+                <label>Jurusan</label>
+                <input type="text" name="jurusan" class="form-control" th:value="${data.jurusanName}" readonly="readonly" >
             </div>
 
-            <div class="form-group">
-                <label for="agama">Agama</label>
-                <select id="agama" th:field="*{agama}" th:class="${#fields.hasErrors('agama')} ? 'form-control is-invalid': 'form-control'">
-                    <option value="">Select One</option>
-                    <option th:each="option: ${#lists.sort(agamaList,byPosition)}" th:value="${option.id}" th:text="${option.name}"
-                            th:selected="${option.id == mahasiswa.agama}">Select One</option>
-                </select>
-                <span th:if="${#fields.hasErrors('agama')}" class="error invalid-feedback" th:errors="*{agama}"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="jurusanId">Jurusan</label>
-                <select id="jurusanId" th:field="*{jurusanId}" th:class="${#fields.hasErrors('jurusanId')} ? 'form-control is-invalid': 'form-control'">
-                    <option value="">Select One</option>
-                    <option th:each="option :${jurusanList}" th:value="${option.id}" th:text="${option.name}"
-                            th:selected="${option.id == mahasiswa.jurusanId}"> </option>
-                </select>
-                <span th:if="${#fields.hasErrors('jurusanId')}" class="error invalid-feedback" th:errors="*{jurusanId}"></span>
-            </div>
         </div>
     </div>
 

@@ -82,7 +82,7 @@ public class DbInit implements CommandLineRunner {
             lookupService.saveAll(Arrays.asList(
                     new LookupEntity("HARI","SENIN","Senin",1),
                     new LookupEntity("HARI","SELASA","Selasa",2),
-                    new LookupEntity("HARI","RABU","RABU",3),
+                    new LookupEntity("HARI","RABU","Rabu",3),
                     new LookupEntity("HARI","KAMIS","Kamis",4),
                     new LookupEntity("HARI","JUMAT","Jumat",5),
                     new LookupEntity("HARI","SABTU","Sabtu",6),
@@ -93,7 +93,14 @@ public class DbInit implements CommandLineRunner {
         if(lookupService.getByGroup("SEMESTER").isEmpty()){
             lookupService.saveAll(Arrays.asList(
                     new LookupEntity("SEMESTER","GANJIL","Ganjil",1),
-                    new LookupEntity("SEMESTER","GANJIL","Genap",2)
+                    new LookupEntity("SEMESTER","GENAP","Genap",2)
+            ));
+        }
+
+        if(lookupService.getByGroup("ONLINE").isEmpty()){
+            lookupService.saveAll(Arrays.asList(
+                    new LookupEntity("ONLINE","BISAONLINE","BISA ONLINE",1),
+                    new LookupEntity("ONLINE","TIDAKONLINE","TIDAK ONLINE",2)
             ));
         }
 

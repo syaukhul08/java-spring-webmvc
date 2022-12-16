@@ -62,7 +62,7 @@
                         <td th:text="${data.code}"></td>
                         <td th:text="${data.name}"></td>
                         <td th:text="${data.lantaiKe}"></td>
-                        <td th:text="${data.gedung.name}"></td>
+                        <td th:text="${data.gedungName}"></td>
                         <td>
                             <a th:href="@{~/ruang/detail/{id}(id=${data.id})}" class="btn btn-xs btn-info btn-detail">
                                 <i class="fas fa-eye"></i>
@@ -134,6 +134,28 @@
             }
         })
         return;
+    });
+
+    $('#modal-form').on('submit','#form-input', function (){
+        $.ajax({
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            dataType: 'html',
+            type: 'POST',
+            success: function (data){
+                // masukan dulu result ke modal
+                $('#modal-form').find('.modal-content').html(data);
+                // check jumlah element yang memiliki class has-error
+                var check = $("#modal-form").find(".modal-content").find(".error").length;
+                console.log("count invalid : "+ check);
+                // jika tidak ada error
+                if(check==0){
+                    $("#modal-form").modal('hide');
+                    location.reload();
+                }
+            }
+        });
+        return false;
     });
 </script>
 </body>

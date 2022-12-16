@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,8 +23,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/mahasiswa")
 public class MahasiswaController {
-    private final MahasiswaService mahasiswaService;
-    private final JurusanService jurusanService;
+    private MahasiswaService mahasiswaService;
+    private JurusanService jurusanService;
     private LookupService lookupService;
 
     @Autowired
@@ -43,10 +45,12 @@ public class MahasiswaController {
     @GetMapping("/add")
     public ModelAndView add(){
         ModelAndView view = new ModelAndView("mahasiswa/form.html");
+
         view.addObject("genderList", lookupService.getByGroup(Constants.GENDER));
         view.addObject("agamaList", lookupService.getByGroup(Constants.AGAMA));
         view.addObject("jurusanList", jurusanService.getAll());
         view.addObject("byPosition", Comparator.comparing(LookupEntity::getPosition));
+
         view.addObject("mahasiswa", new MahasiswaModel());
         return view;
     }
@@ -54,9 +58,21 @@ public class MahasiswaController {
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute("mahasiswa") MahasiswaModel request, BindingResult result){
         ModelAndView view = new ModelAndView("mahasiswa/form.html");
-        if (result.hasErrors()){
-            view.addObject("mahasiswa", request);
-        }
+
+       if (Boolean.FALSE.equals(mahasiswaService.validNim(request))){
+           FieldError fieldError = new FieldError("mahasiswa", "code", "Code "+ request.getNim() + " already exist");
+           result.addError(fieldError);
+       }
+
+       if (Boolean.FALSE.equals(mahasiswaService.validName(request))){
+           ObjectError objectError = new FieldError("mahasiswa", "code", "Code "+ request.getName() + " already exist");
+           result.addError(objectError);
+       }
+
+       if (result.hasErrors()){
+           view.addObject("mahasiswa", request);
+           return view;
+       }
 
         this.mahasiswaService.save(request);
         return new ModelAndView("redirect:/mahasiswa");
@@ -69,14 +85,13 @@ public class MahasiswaController {
             return new ModelAndView("redirect:/mahasiswa");
         }
 
-        //List<JurusanModel> jurusan = jurusanService.get();
         ModelAndView view = new ModelAndView("mahasiswa/edit.html");
         view.addObject("genderList", lookupService.getByGroup(Constants.GENDER));
         view.addObject("agamaList", lookupService.getByGroup(Constants.AGAMA));
         view.addObject("jurusanList", jurusanService.getAll());
-        // untuk order
+
         view.addObject("byPosition", Comparator.comparing(LookupEntity::getPosition));
-        // data yang akan diedit
+
         view.addObject("mahasiswa", mahasiswa);
         return view;
     }
@@ -99,13 +114,7 @@ public class MahasiswaController {
             return new ModelAndView("redirect:/mahasiswa");
         }
         ModelAndView view = new ModelAndView("mahasiswa/detail.html");
-        view.addObject("genderList", lookupService.getByGroup(Constants.GENDER));
-        view.addObject("agamaList", lookupService.getByGroup(Constants.AGAMA));
-        view.addObject("jurusanList", jurusanService.getAll());
-        // untuk order
-        view.addObject("byPosition", Comparator.comparing(LookupEntity::getPosition));
-        // data yang akan diedit
-        view.addObject("mahasiswa", mahasiswa);
+        view.addObject("data", mahasiswa);
         return view;
     }
 

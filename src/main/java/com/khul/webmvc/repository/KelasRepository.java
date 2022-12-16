@@ -35,5 +35,6 @@ public interface KelasRepository extends JpaRepository<KelasEntity, String> {
                                   @Param("jamSelesai") Date jamSelesai
     );
 
+    List<KelasEntity> findByCode(String code);
 
 }

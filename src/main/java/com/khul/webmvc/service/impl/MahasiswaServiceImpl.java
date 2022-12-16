@@ -40,7 +40,7 @@ public class MahasiswaServiceImpl implements MahasiswaService {
             return new MahasiswaModel();
         }
         Optional<MahasiswaEntity> result = repository.findById(id);
-        // convert dari SiswaEntity => SiswaModel
+
         return result.map(MahasiswaModel::new).orElseGet(MahasiswaModel::new);
     }
 
@@ -61,6 +61,17 @@ public class MahasiswaServiceImpl implements MahasiswaService {
         if (request == null) {
             return Optional.empty();
         }
+
+        List<MahasiswaEntity> checkNim = this.repository.findByNim(request.getNim());
+        if (!checkNim.isEmpty()){
+            return Optional.empty();
+        }
+
+        List<MahasiswaEntity> checkName = this.repository.findByName(request.getName());
+        if (!checkName.isEmpty()){
+            return Optional.empty();
+        }
+
         MahasiswaEntity result = new MahasiswaEntity(request);
         try {
             // proses simpan data
@@ -74,21 +85,22 @@ public class MahasiswaServiceImpl implements MahasiswaService {
     @Override
     public Optional<MahasiswaModel> update(String id, MahasiswaModel request) {
         Optional<MahasiswaEntity> result = this.repository.findById(id);
-        if (result.isEmpty()) {
+
+        if (result.isEmpty()){
             return Optional.empty();
         }
-        // check data dari result
+
         MahasiswaEntity data = result.get();
-        // replace data lama dengan dataBaru
-        data.setName(request.getName());
-        data.setJk(request.getJk());
-        data.setAlamat(request.getAlamat());
-        data.setTmpLahir(request.getTmpLahir());
-        data.setTglLahir(request.getTglLahir());
-        data.setAgama(request.getAgama());
+        BeanUtils.copyProperties(request,data);
+        data.setId(id);
+//        data.setName(request.getName());
+//        data.setJk(data.getJk());
+//        data.setAlamat(request.getAlamat());
+//        data.setTmpLahir(data.getTmpLahir());
+//        data.setTglLahir(data.getTglLahir());
+//        data.setAgama(data.getAgama());
         JurusanEntity jurusan = new JurusanEntity(request.getJurusanId());
         data.setJurusan(jurusan);
-
         data.setUpdatedAt(LocalDateTime.now());
         data.setUpdatedBy("SYSTEM");
 
@@ -102,10 +114,12 @@ public class MahasiswaServiceImpl implements MahasiswaService {
 
     @Override
     public Optional<MahasiswaModel> delete(String id) {
-        Optional<MahasiswaEntity> result = this.repository.findById(id);
+
+        Optional<MahasiswaEntity> result = repository.findById(id);
         if (result.isEmpty()) {
             return Optional.empty();
         }
+
         try {
             MahasiswaEntity data = result.get();
             this.repository.delete(data);
