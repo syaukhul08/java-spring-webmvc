@@ -33,9 +33,9 @@ public class MataKuliahController {
     }
 
     @GetMapping("/add")
-    public ModelAndView update(){
+    public ModelAndView add(){
         ModelAndView view = new ModelAndView("matakuliah/form.html");
-        view.addObject("matakuliah", new MahasiswaModel());
+        view.addObject("matakuliah", new MataKuliahModel());
         return view;
     }
 

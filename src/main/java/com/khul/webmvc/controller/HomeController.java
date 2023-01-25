@@ -15,12 +15,12 @@ public class HomeController {
 
     @GetMapping("/home")
     public ModelAndView home(){
-        return new ModelAndView("pages/home");
+        return new ModelAndView("pages/home.html");
     }
 
     @GetMapping("/dashboard")
     public ModelAndView dashboard(){
-        return new ModelAndView("pages/home");
+        return new ModelAndView("pages/home.html");
     }
 
     @GetMapping("/login")

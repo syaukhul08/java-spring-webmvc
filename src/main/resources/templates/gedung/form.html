@@ -12,15 +12,15 @@
             </div>
 
             <div class="form-group">
-                <label for="name">Nama</label>
-                <input id="name" type="text" th:field="*{jmlLantai}" th:class="${#fields.hasErrors('jmlLantai')} ? 'form-control is-invalid': 'form-control'">
-                <span th:if="${#fields.hasErrors('jmlLantai')}" class="error invalid-feedback" th:errors="*{jmlLantai}"></span>
+                <label for="jmlLantai">Nama</label>
+                <input id="jmlLantai" type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')} ? 'form-control is-invalid': 'form-control'">
+                <span th:if="${#fields.hasErrors('name')}" class="error invalid-feedback" th:errors="*{name}"></span>
             </div>
 
             <div class="form-group">
-                <label for="jmlLantai">Jumlah Lantai</label>
-                <input id="jmlLantai" type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')} ? 'form-control is-invalid': 'form-control'">
-                <span th:if="${#fields.hasErrors('name')}" class="error invalid-feedback" th:errors="*{name}"></span>
+                <label for="name">Jumlah Lantai</label>
+                <input id="name" type="text" th:field="*{jmlLantai}" th:class="${#fields.hasErrors('jmlLantai')} ? 'form-control is-invalid': 'form-control'">
+                <span th:if="${#fields.hasErrors('jmlLantai')}" class="error invalid-feedback" th:errors="*{jmlLantai}"></span>
             </div>
 
             <div class="form-group">

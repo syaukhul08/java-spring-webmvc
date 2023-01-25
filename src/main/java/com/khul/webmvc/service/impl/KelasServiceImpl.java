@@ -68,10 +68,6 @@ public class KelasServiceImpl implements KelasService {
                 request.getJamSelesai()
         );
 
-        if(check01 != null || !check01.isEmpty()){
-            return Optional.empty();
-        }
-
         //check 02
         List<KelasEntity> check02 = this.repository.checkCase02(
                 request.getRuangId(),
@@ -79,10 +75,6 @@ public class KelasServiceImpl implements KelasService {
                 request.getJamMulai(),
                 request.getJamSelesai()
         );
-
-        if(check02 != null || !check02.isEmpty()){
-            return Optional.empty();
-        }
 
         //check 03
         List<KelasEntity> check03 = this.repository.checkCase03(
@@ -92,7 +84,7 @@ public class KelasServiceImpl implements KelasService {
                 request.getJamSelesai()
         );
 
-        if(check03 != null || !check03.isEmpty()){
+        if (check01.size()>0){
             return Optional.empty();
         }
 
