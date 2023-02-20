@@ -1,6 +1,5 @@
 <!-- card mulai -->
 <form th:action="@{~/matakuliah/update}" method="post" id="form-input" th:object="${matakuliah}">
-    <input type="hidden" name="id" th:value="${data.id}">
     <div class="card">
         <div class="card-header bg-warning">
             <h3 class="card-title">New Mata Kuliah</h3>
@@ -19,8 +18,8 @@
 
                 <div class="form-group">
                     <label for="name">Nama</label>
-                    <input id="name" type="text" th:field="*{jmlLantai}" th:class="${#fields.hasErrors('jmlLantai')} ? 'form-control is-invalid': 'form-control'">
-                    <span th:if="${#fields.hasErrors('jmlLantai')}" class="error invalid-feedback" th:errors="*{jmlLantai}"></span>
+                    <input id="name" type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')} ? 'form-control is-invalid': 'form-control'">
+                    <span th:if="${#fields.hasErrors('name')}" class="error invalid-feedback" th:errors="*{name}"></span>
                 </div>
 
                 <div class="form-group">

@@ -1,16 +1,15 @@
  <!-- card mulai -->
- <form th:action="@{~/kelas/update}" method="post" method="post" id="form-input" th:object="${kelas}">
-     <input type="hidden" name="id" th:value="${data.id}">
+ <form th:action="@{~/kelas/update}" method="post" id="form-input" th:object="${kelas}">
          <div class="card">
              <div class="card-header bg-warning">
-                 <h3 class="card-title">New Fakultas</h3>
+                 <h3 class="card-title">New Kelas</h3>
              </div>
 
              <div class="modal-body row">
-                 <div class="col-md-6 col-lg-6">
-                     <!--id di hidden-->
-                     <input type="hidden" id="id" th:field="*{id}">
 
+                 <input type="hidden" th:field="*{id}">
+
+                 <div class="col-md-6 col-lg-6">
                      <div class="form-group">
                          <label for="code">Kode</label>
                          <input id="code" type="text" th:field="*{code}" th:class="${#fields.hasErrors('code')} ? 'form-control is invalid': 'form-control'">
